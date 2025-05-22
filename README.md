@@ -1,5 +1,7 @@
 # Marvel-Rivals-TRMNL-Tracker
 This repository contains the source code, templates, and setup instructions for sending Marvel Rivals account game data to your TRMNL device using PowerShell and GitHub Actions.
+
+
 ![Marvel Rivals](https://github.com/user-attachments/assets/3f8a79fe-ca81-4f40-a649-01489e0c204e)
 
 
@@ -83,3 +85,6 @@ The purpose of the `.github/workflows/MarvelRivalsTrackerUpdater.yml` GitHub Act
        - `Checkout repository`: Checks out the repository to the runner.
        - `Run PowerShell script for user 1`: Executes the `MarvelRivalsTrmnl.ps1` script for the first username and plugin ID.
        - `Run PowerShell script for user 2`: Executes the `MarvelRivalsTrmnl.ps1` script for the second username and plugin ID (if provided).
+      
+### Credits
+- http://marvelrivalsapi.com/
