@@ -335,12 +335,10 @@ Function Invoke-TrmnlPostRequest {
     }
 
     $TrmnlBody = @{
-        "merge_variables" = $Body 
+        "merge_variables" = ($Body | ConvertTo-Json -Depth 10)
     }
 
-    $TrmnlBody | ConvertTo-Json -Depth 10
-
-    Invoke-RestMethod -Uri $uri -Headers $TrmnlHeaders -Method Post -Body ($TrmnlBody | ConvertTo-Json -Depth 10)
+    Invoke-RestMethod -Uri $uri -Headers $TrmnlHeaders -Method Post -Body $TrmnlBody
 }
 
 $Body = Get-AccountData -username $username -erroraction Stop
