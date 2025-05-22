@@ -3,8 +3,8 @@ env:
   api_key: ${{ secrets.MARVELRIVALSAPIKEY }}
   trmnl_plugin_id1: ${{ secrets.TRMNL_PLUGIN_ID1 }}
   trmnl_plugin_id2: ${{ secrets.TRMNL_PLUGIN_ID2 }}
-  valorant_username1: ${{ vars.USERNAME1 }}
-  valorant_username2: ${{ vars.USERNAME2  }}
+  username1: ${{ vars.USERNAME1 }}
+  username2: ${{ vars.USERNAME2  }}
 on: 
   schedule:
   - cron: '0 23,0-7 * * *'
@@ -18,10 +18,10 @@ jobs:
 
     - name: Run PowerShell script for user 1
       if: ${{ env.trmnl_plugin_id1 && env.username1 }}
-      run: .\scripts\MarvelRivalsTrmnl.ps1 -TrmnlPluginId "$env:trmnl_plugin_id1" -APIKey "$env:api_key" -username $env:username1 > $null
+      run: .\scripts\MarvelRivalsTrmnl.ps1 -TrmnlPluginId "$env:trmnl_plugin_id1" -APIKey "$env:api_key" -username "$env:username1" > $null
       shell: pwsh
 
     - name: Run PowerShell script for user 2
-      if: ${{ env.trmnl_plugin_id12 && env.username2 }}
-      run: .\scripts\MarvelRivalsTrmnl.ps1 -TrmnlPluginId "$env:trmnl_plugin_id2" -APIKey "$env:api_key" -username $env:username2 > $null
+      if: ${{ env.trmnl_plugin_id2 && env.username2 }}
+      run: .\scripts\MarvelRivalsTrmnl.ps1 -TrmnlPluginId "$env:trmnl_plugin_id2" -APIKey "$env:api_key" -username "$env:username2" > $null
       shell: pwsh
