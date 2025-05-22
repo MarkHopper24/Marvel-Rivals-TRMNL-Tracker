@@ -1,0 +1,160 @@
+<div class="layout layout--col layout--top" >
+  <span class="value value--small" >{{ PlayerName }}</span>
+  <br>
+  <div class="grid grid--cols-4">
+    <div class="item">
+      <div class="meta"></div>
+      <div class="content">
+        <span class="title title--small">{{PlayerRank}}</span>
+        <div class="flex gap--small">
+          <span class="label label--small">Current Rank</span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="meta"></div>
+      <div class="content">
+        <span class="title title--small">{{ Season }}</span>
+        <div class="flex gap--small">
+          <span class="label label--small">Season</span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="meta"></div>
+      <div class="content">
+        <span class="title title--small">{{ PlayerLevel }}</span>
+        <div class="flex gap--small">
+          <span class="label label--small">Level</span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="meta"></div>
+      <div class="content">
+        <span class="title title--small">{{ RankedGames }}</span>
+        <div class="flex gap--small">
+          <span class="label label--small">Ranked Games</span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="meta"></div>
+      <div class="content">
+        <span class="title title--small">{{ RankedWinRate }}</span>
+        <div class="flex gap--small">
+          <span class="label label--small">Competitive Win%</span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="meta"></div>
+      <div class="content">
+        <span class="title title--small">{{ RankedKDA }}</span>
+        <div class="flex gap--small">
+          <span class="label label--small">Ranked KDA%</span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="meta"></div>
+      <div class="content">
+        <span class="title title--small">{{ MostUsedHero }}</span>
+        <div class="flex gap--small">
+          <span class="label label--small">Top Hero</span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="meta"></div>
+      <div class="content">
+        <span class="title title--small">{{ RankedKills }}</span>
+        <div class="flex gap--small">
+          <span class="label label--small">Ranked Kills</span>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <table class="table" layout--bottom>
+    <thead>
+      <tr>
+        <th><span class="label label--small">W/L</span></th>
+        <th><span class="label label--small">Score</span></th>
+        <th><span class="label label--small">Date</span></th>
+        <th><span class="label label--small">Map</span></th>
+        <th><span class="label label--small">Most Played</span></th>
+        <th><span class="label label--small">Damage</span></th>
+        <th><span class="label label--small">Healing</span></th>
+        <th><span class="label label--small">K</span></th>
+        <th><span class="label label--small">D</span></th>
+        <th><span class="label label--small">A</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="description">{{ MatchHistory0.Outcome }}</span></td>
+        <td><span class="description">{{ MatchHistory0.Score }}</span></td>
+        <td><span class="description">{{ MatchHistory0.MatchStart }}</span></td>
+        <td><span class="description">{{ MatchHistory0.Map }}</span></td>
+        <td><span class="description">{{ MatchHistory0.MostPlayedHero }}</span></td>
+        <td><span class="description">{{ MatchHistory0.Damage }}</span></td>
+        <td><span class="description">{{ MatchHistory0.Healing }}</span></td>
+        <td><span class="description">{{ MatchHistory0.Kills }}</span></td>
+        <td><span class="description">{{ MatchHistory0.Deaths }}</span></td>
+        <td><span class="description">{{ MatchHistory0.Assists }}</span></td>
+      </tr>
+  </tr>
+    <tr>
+      <td><span class="description">{{ MatchHistory1.Outcome }}</span></td>
+      <td><span class="description">{{ MatchHistory1.Score }}</span></td>
+      <td><span class="description">{{ MatchHistory1.MatchStart }}</span></td>
+      <td><span class="description">{{ MatchHistory1.Map }}</span></td>
+      <td><span class="description">{{ MatchHistory1.MostPlayedHero }}</span></td>
+      <td><span class="description">{{ MatchHistory1.Damage }}</span></td>
+      <td><span class="description">{{ MatchHistory1.Healing }}</span></td>
+      <td><span class="description">{{ MatchHistory1.Kills }}</span></td>
+      <td><span class="description">{{ MatchHistory1.Deaths }}</span></td>
+      <td><span class="description">{{ MatchHistory1.Assists }}</span></td>
+    </tr>
+    <tr>
+      <td><span class="description">{{ MatchHistory2.Outcome }}</span></td>
+      <td><span class="description">{{ MatchHistory2.Score }}</span></td>
+      <td><span class="description">{{ MatchHistory2.MatchStart }}</span></td>
+      <td><span class="description">{{ MatchHistory2.Map }}</span></td>
+      <td><span class="description">{{ MatchHistory2.MostPlayedHero }}</span></td>
+      <td><span class="description">{{ MatchHistory2.Damage }}</span></td>
+      <td><span class="description">{{ MatchHistory2.Healing }}</span></td>
+      <td><span class="description">{{ MatchHistory2.Kills }}</span></td>
+      <td><span class="description">{{ MatchHistory2.Deaths }}</span></td>
+      <td><span class="description">{{ MatchHistory2.Assists }}</span></td>
+    </tr>
+    <tr>
+      <td><span class="description">{{ MatchHistory3.Outcome }}</span></td>
+      <td><span class="description">{{ MatchHistory3.Score }}</span></td>
+      <td><span class="description">{{ MatchHistory3.MatchStart }}</span></td>
+      <td><span class="description">{{ MatchHistory3.Map }}</span></td>
+      <td><span class="description">{{ MatchHistory3.MostPlayedHero }}</span></td>
+      <td><span class="description">{{ MatchHistory3.Damage }}</span></td>
+      <td><span class="description">{{ MatchHistory3.Healing }}</span></td>
+      <td><span class="description">{{ MatchHistory3.Kills }}</span></td>
+      <td><span class="description">{{ MatchHistory3.Deaths }}</span></td>
+      <td><span class="description">{{ MatchHistory3.Assists }}</span></td>
+    </tr>
+    <tr>
+      <td><span class="description">{{ MatchHistory4.Outcome }}</span></td>
+      <td><span class="description">{{ MatchHistory4.Score }}</span></td>
+      <td><span class="description">{{ MatchHistory4.MatchStart }}</span></td>
+      <td><span class="description">{{ MatchHistory4.Map }}</span></td>
+      <td><span class="description">{{ MatchHistory4.MostPlayedHero }}</span></td>
+      <td><span class="description">{{ MatchHistory4.Damage }}</span></td>
+      <td><span class="description">{{ MatchHistory4.Healing }}</span></td>
+      <td><span class="description">{{ MatchHistory4.Kills }}</span></td>
+      <td><span class="description">{{ MatchHistory4.Deaths }}</span></td>
+      <td><span class="description">{{ MatchHistory4.Assists }}</span></td>
+    </tr>
+  </table>
+</div>
+<div class="title_bar">
+  <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/7/70/Logo_Marvel_Rivals.png" />
+  <span class="title">Marvel Rivals Tracker</span>
+</div>
