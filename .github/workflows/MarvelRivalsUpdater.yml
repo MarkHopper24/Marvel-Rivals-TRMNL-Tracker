@@ -1,4 +1,4 @@
-name: Send Valorant Stats to TRMNL hourly
+name: Send Marvel Rival Stats to TRMNL
 env:
   api_key: ${{ secrets.MARVELRIVALSAPIKEY }}
   trmnl_plugin_id1: ${{ secrets.TRMNL_PLUGIN_ID1 }}
