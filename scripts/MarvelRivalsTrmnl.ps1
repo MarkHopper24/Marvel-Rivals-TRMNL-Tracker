@@ -324,7 +324,7 @@ Function Get-MatchDetails {
 Function Invoke-TrmnlPostRequest {
     param(
         [Parameter(Mandatory = $true)]
-        [hashtable]$Body
+        $Body
     )
 
     $uri = "https://usetrmnl.com/api/custom_plugins/$TrmnlPluginId"
