@@ -76,8 +76,7 @@ Function Update-Player-Stats {
     )
 
     $uri = "https://marvelrivalsapi.com/api/v1/player/$username/update"
-    $response = Invoke-RestMethod -Uri $uri -Headers $headers -Method Get
-    return $response
+    Invoke-RestMethod -Uri $uri -Headers $headers -Method Get -ErrorAction Continue
 }
 
 Function Convert-EpochToDate {
