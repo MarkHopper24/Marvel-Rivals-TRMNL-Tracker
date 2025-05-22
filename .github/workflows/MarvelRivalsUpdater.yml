@@ -24,6 +24,10 @@ jobs:
       if: ${{ env.trmnl_plugin_id1 && env.username1 }}
       run: .\scripts\MarvelRivalsTrmnl.ps1 -TrmnlPluginId "$env:trmnl_plugin_id1" -APIKey "$env:api_key" -username "$env:username1" > $null
       shell: pwsh
+      
+    - name: Sleep for 10 minutes seconds
+      run: Start-Sleep -s 600
+      shell: pwsh
 
     - name: Run PowerShell script for user 2
       if: ${{ env.trmnl_plugin_id2 && env.username2 }}
