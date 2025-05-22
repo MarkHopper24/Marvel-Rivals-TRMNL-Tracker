@@ -66,10 +66,6 @@ param(
     [string]$username
 )
 
-$APIKey = $APIKey
-$TrmnlPluginId = $TrmnlPluginId
-$username = $username
-
 $headers = @{}
 $headers.Add("x-api-key", "$APIKey")
 
@@ -133,6 +129,7 @@ Function Get-AccountData {
 
     #Make sure the first letter of the hero name is capitalized. Some hereos have three words
     $MostUsedHero = $MostUsedHero.Substring(0, 1).ToUpper() + $MostUsedHero.Substring(1)
+    
     $TotalGames = $AccountResponse.overall_stats.total_matches
     $TotalWins = $AccountResponse.overall_stats.total_wins
     $UnrankedGames = $AccountResponse.overall_stats.unranked.total_matches
@@ -279,9 +276,6 @@ function Get-HeroName {
     $MostPlayedHero = $HeroResponse | Where-Object { $_.id -eq $heroId }
 
     $MostPlayedHeroName = (Get-Culture).TextInfo.ToTitleCase($MostPlayedHero.name.ToLower())
-
-    #Modify this in case a hero has three words so the first letter of each word is capitalized
-    #$MostPlayedHeroName = $MostPlayedHero.name.Substring(0, 1).ToUpper() + $MostPlayedHero.name.Substring(1).ToUpper()
 
     return $MostPlayedHeroName
 }
