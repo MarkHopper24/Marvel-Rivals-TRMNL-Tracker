@@ -198,7 +198,7 @@ Function Get-AccountData {
                 $Score = [string]$match.score_info.1 + " - " + [string]$match.score_info.0
             }
         }
-        elseif ($PlayerStats.is_win -eq 2) {
+        else {
             $MatchDetails.Add('Outcome', 'D')
             $Score = [string]$match.score_info.0 + " - " + [string]$match.score_info.1
         }
