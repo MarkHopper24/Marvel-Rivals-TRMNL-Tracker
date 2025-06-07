@@ -329,7 +329,7 @@ Function Invoke-TrmnlPostRequest {
 
     $uri = "https://usetrmnl.com/api/custom_plugins/$TrmnlPluginId"
 
-    $Body1 = $Body | Select-Object -Property PlayerName, PlayerRank, PlayerLevel, MostUsedHero, RankedGames, RankedWins, RankedWinRate, RankedKDA, Season
+    $Body1 = $Body | Select-Object -Property PlayerName, PlayerRank, PlayerLevel, MostUsedHero, RankedGames, RankedWins, RankedWinRate, RankedKills, RankedKDA, Season
     $Body2 = $Body | Select-Object -Property MatchHistory0, MatchHistory1, MatchHistory2, MatchHistory3, MatchHistory4
 
     $TrmnlBody = @{
