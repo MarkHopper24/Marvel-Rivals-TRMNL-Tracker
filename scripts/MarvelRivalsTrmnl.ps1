@@ -248,8 +248,8 @@ Function Get-AccountData {
         "RankedWins"    = $RankedWins
         "RankedWinRate" = $RankedWinRate
         "RankedKills"   = $RankedKills
-        "RankedDeaths"  = $RankedDeaths
-        "RankedAssists" = $RankedAssists
+        # "RankedDeaths"  = $RankedDeaths
+        # "RankedAssists" = $RankedAssists
         "RankedKDA"     = $CompKDA
         "MatchHistory0" = $ParsedMatchDetails[0]
         "MatchHistory1" = $ParsedMatchDetails[1] 
@@ -329,15 +329,32 @@ Function Invoke-TrmnlPostRequest {
 
     $uri = "https://usetrmnl.com/api/custom_plugins/$TrmnlPluginId"
 
+    $Body1 = $Body | Select-Object -Property PlayerName, PlayerRank, PlayerLevel, MostUsedHero, RankedGames, RankedWins, RankedWinRate, RankedKDA, Season
+    $Body2 = $Body | Select-Object -Property MatchHistory0, MatchHistory1, MatchHistory2, MatchHistory3, MatchHistory4
+
     $TrmnlBody = @{
-        "merge_variables" = $Body
+        "merge_variables" = $Body1
+        "deep_merge"      = $true
     }
 
     $TrmnlBody = $TrmnlBody | ConvertTo-Json -Depth 10
-    
 
-    $TRMNLResponse = Invoke-RestMethod -Uri $uri -Headers $TrmnlHeaders -Method Post -Body $TrmnlBody 
-    $TRMNLResponse
+    try {
+        Invoke-RestMethod -Uri $uri -Headers $TrmnlHeaders -Method Post -Body $TrmnlBody -contentType "application/json"
+    }
+    catch {
+        Write-Host "Error posting to TRMNL: $_"
+        return
+    }
+    Start-Sleep -Seconds 305
+
+    $TrmnlBody2 = @{
+        "merge_variables" = $Body2
+        "deep_merge"      = $true
+    }
+    $TrmnlBody2 = $TrmnlBody2 | ConvertTo-Json -Depth 10
+
+    Invoke-RestMethod -Uri $uri -Headers $TrmnlHeaders -Method Post -Body $TrmnlBody2 -contentType "application/json"
 }
 
 $Body = Get-AccountData -username $username -erroraction Stop
