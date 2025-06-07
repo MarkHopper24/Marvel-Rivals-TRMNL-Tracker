@@ -25,8 +25,8 @@ jobs:
       run: .\scripts\MarvelRivalsTrmnl.ps1 -TrmnlPluginId "$env:trmnl_plugin_id1" -APIKey "$env:api_key" -username "$env:username1"
       shell: pwsh
       
-    - name: Sleep for 10 minutes
-      run: Start-Sleep -s 600
+    - name: Sleep for 90 seconds
+      run: Start-Sleep -s 90
       shell: pwsh
 
     - name: Run PowerShell script for user 2
