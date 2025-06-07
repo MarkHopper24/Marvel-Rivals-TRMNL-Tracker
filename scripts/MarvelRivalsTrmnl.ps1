@@ -198,7 +198,7 @@ Function Get-AccountData {
                 $Score = [string]$match.score_info.1 + " - " + [string]$match.score_info.0
             }
         }
-        else {
+        elseif ($PlayerStats.is_win -eq 2) {
             $MatchDetails.Add('Outcome', 'D')
             $Score = [string]$match.score_info.0 + " - " + [string]$match.score_info.1
         }
@@ -329,17 +329,15 @@ Function Invoke-TrmnlPostRequest {
 
     $uri = "https://usetrmnl.com/api/custom_plugins/$TrmnlPluginId"
 
-    $TrmnlHeaders = @{
-        "Content-Type" = "application/json"
-    }
-
     $TrmnlBody = @{
         "merge_variables" = $Body
     }
 
     $TrmnlBody = $TrmnlBody | ConvertTo-Json -Depth 10
+    
 
-    Invoke-RestMethod -Uri $uri -Headers $TrmnlHeaders -Method Post -Body $TrmnlBody
+    $TRMNLResponse = Invoke-RestMethod -Uri $uri -Headers $TrmnlHeaders -Method Post -Body $TrmnlBody 
+    $TRMNLResponse
 }
 
 $Body = Get-AccountData -username $username -erroraction Stop
