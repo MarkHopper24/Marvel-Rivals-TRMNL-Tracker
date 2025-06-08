@@ -111,8 +111,6 @@ Function Get-AccountData {
 
     # Compare time difference with one hour in ticks
     if ($TimeDifference -ge $OneHourInTicks) {
-     
-        #If the last update request was more than 1 hour ago, update the player stats
         Update-Player-Stats -username $username
         #Even if its not yet updated, it will be the next time the script is run
         $AccountResponse = Invoke-RestMethod -Uri $uri -Headers $headers -Method Get
@@ -129,10 +127,10 @@ Function Get-AccountData {
     #Make sure the first letter of the hero name is capitalized. Some hereos have three words
     $MostUsedHero = $MostUsedHero.Substring(0, 1).ToUpper() + $MostUsedHero.Substring(1)
     
-    $TotalGames = $AccountResponse.overall_stats.total_matches
-    $TotalWins = $AccountResponse.overall_stats.total_wins
-    $UnrankedGames = $AccountResponse.overall_stats.unranked.total_matches
-    $UnrankedWins = $AccountResponse.overall_stats.unranked.total_wins
+    #$TotalGames = $AccountResponse.overall_stats.total_matches
+    #$TotalWins = $AccountResponse.overall_stats.total_wins
+    #$UnrankedGames = $AccountResponse.overall_stats.unranked.total_matches
+    #$UnrankedWins = $AccountResponse.overall_stats.unranked.total_wins
     $RankedGames = $AccountResponse.overall_stats.ranked.total_matches
     $RankedWins = $AccountResponse.overall_stats.ranked.total_wins
     $RankedKills = $AccountResponse.overall_stats.ranked.total_kills
@@ -199,8 +197,7 @@ Function Get-AccountData {
             }
         }
         elseif ($PlayerStats.is_win -eq 2) {
-            $MatchDetails.Add('Outcome', 'D')
-            $Score = [string]$match.score_info.0 + " - " + [string]$match.score_info.1
+            $MatchDetails.Add('Outcome', 'No Result')
         }
 
         $MatchDetails.Add('Score', $Score)
@@ -329,8 +326,27 @@ Function Invoke-TrmnlPostRequest {
 
     $uri = "https://usetrmnl.com/api/custom_plugins/$TrmnlPluginId"
 
-    $Body1 = $Body | Select-Object -Property PlayerName, PlayerRank, PlayerLevel, MostUsedHero, RankedGames, RankedWins, RankedWinRate, RankedKills, RankedKDA, Season
-    $Body2 = $Body | Select-Object -Property MatchHistory0, MatchHistory1, MatchHistory2, MatchHistory3, MatchHistory4
+    #Make sure body1 and body2 are hashtables
+
+    $Body1 = @{}
+    $Body2 = @{}
+
+    $Body1.Add('PlayerName', $Body.PlayerName)
+    $Body1.Add('PlayerRank', $Body.PlayerRank)
+    $Body1.Add('PlayerLevel', $Body.PlayerLevel)
+    $Body1.Add('MostUsedHero', $Body.MostUsedHero)
+    $Body1.Add('RankedGames', $Body.RankedGames)
+    $Body1.Add('RankedWins', $Body.RankedWins)
+    $Body1.Add('RankedWinRate', $Body.RankedWinRate)
+    $Body1.Add('RankedKills', $Body.RankedKills)
+    $Body1.Add('RankedKDA', $Body.RankedKDA)
+    $Body1.Add('Season', $Body.Season)
+
+    $Body2.Add('MatchHistory0', $Body.MatchHistory0)
+    $Body2.Add('MatchHistory1', $Body.MatchHistory1)
+    $Body2.Add('MatchHistory2', $Body.MatchHistory2)
+    $Body2.Add('MatchHistory3', $Body.MatchHistory3)
+    $Body2.Add('MatchHistory4', $Body.MatchHistory4)
 
     $TrmnlBody = @{
         "merge_variables" = $Body1
