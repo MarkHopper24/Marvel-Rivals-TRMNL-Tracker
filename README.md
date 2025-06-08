@@ -1,4 +1,6 @@
-# Marvel Rivals TRMNL Tracker 
+# Marvel Rivals TRMNL Tracker
+[![Send Marvel Rival Stats to TRMNL](https://github.com/MarkHopper24/Marvel-Rivals-TRMNL-Tracker/actions/workflows/MarvelRivalsUpdater.yml/badge.svg)](https://github.com/MarkHopper24/Marvel-Rivals-TRMNL-Tracker/actions/workflows/MarvelRivalsUpdater.yml)
+
 ![trmnl-badge-works-with-light](https://github.com/user-attachments/assets/f79822bf-377f-4945-9ec1-f650df721b84)
 
 This repository contains the source code, templates, and setup instructions for sending Marvel Rivals account game data to your TRMNL e-ink display using PowerShell and GitHub Actions.
