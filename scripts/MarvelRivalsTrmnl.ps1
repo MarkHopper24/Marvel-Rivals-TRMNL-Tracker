@@ -342,11 +342,11 @@ Function Invoke-TrmnlPostRequest {
     $Body1.Add('RankedKDA', $Body.RankedKDA)
     $Body1.Add('Season', $Body.Season)
 
-    $Body2.Add('MatchHistory0', $Body.MatchHistory0)
-    $Body2.Add('MatchHistory1', $Body.MatchHistory1)
-    $Body2.Add('MatchHistory2', $Body.MatchHistory2)
-    $Body2.Add('MatchHistory3', $Body.MatchHistory3)
-    $Body2.Add('MatchHistory4', $Body.MatchHistory4)
+    $Body2.Add('MatchHistory0', $Body.MatchHistory0 -as [hashtable])
+    $Body2.Add('MatchHistory1', $Body.MatchHistory1 -as [hashtable])
+    $Body2.Add('MatchHistory2', $Body.MatchHistory2 -as [hashtable])
+    $Body2.Add('MatchHistory3', $Body.MatchHistory3 -as [hashtable])
+    $Body2.Add('MatchHistory4', $Body.MatchHistory4 -as [hashtable])
 
     $TrmnlBody = @{
         "merge_variables" = $Body1
