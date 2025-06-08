@@ -330,6 +330,17 @@ Function Invoke-TrmnlPostRequest {
 
     $Body1 = @{}
     $Body2 = @{}
+    $MatchHistory0 = @{}
+    $MatchHistory1 = @{}
+    $MatchHistory2 = @{}
+    $MatchHistory3 = @{}
+    $MatchHistory4 = @{}
+
+    $MatchHistory0 = $Body.MatchHistory0 -as [hashtable]
+    $MatchHistory1 = $Body.MatchHistory1 -as [hashtable]
+    $MatchHistory2 = $Body.MatchHistory2 -as [hashtable]
+    $MatchHistory3 = $Body.MatchHistory3 -as [hashtable]
+    $MatchHistory4 = $Body.MatchHistory4 -as [hashtable]
 
 
     $Body1.Add('Season', [string]$Body.Season)
@@ -343,11 +354,11 @@ Function Invoke-TrmnlPostRequest {
     $Body1.Add('RankedKDA', [string]$Body.RankedKDA)
     $Body1.Add('RankedKills', [string]$Body.RankedKills)
 
-    $Body2.Add('MatchHistory0', [hashtable]$Body.MatchHistory0)
-    $Body2.Add('MatchHistory1', [hashtable]$Body.MatchHistory1)
-    $Body2.Add('MatchHistory2', [hashtable]$Body.MatchHistory2)
-    $Body2.Add('MatchHistory3', [hashtable]$Body.MatchHistory3)
-    $Body2.Add('MatchHistory4', [hashtable]$Body.MatchHistory4)
+    $Body2.Add('MatchHistory0', $MatchHistory0)
+    $Body2.Add('MatchHistory1', $MatchHistory1)
+    $Body2.Add('MatchHistory2', $MatchHistory2)
+    $Body2.Add('MatchHistory3', $MatchHistory3)
+    $Body2.Add('MatchHistory4', $MatchHistory4)
 
     $TrmnlBody = @{
         "merge_variables" = $Body1
@@ -356,13 +367,9 @@ Function Invoke-TrmnlPostRequest {
 
     $TrmnlBody = $TrmnlBody | ConvertTo-Json -Depth 10
 
-    try {
-        Invoke-RestMethod -Uri $uri -Headers $TrmnlHeaders -Method Post -Body $TrmnlBody -contentType "application/json"
-    }
-    catch {
-        Write-Host "Error posting to TRMNL: $_"
-        return
-    }
+    Invoke-RestMethod -Uri $uri -Headers $TrmnlHeaders -Method Post -Body $TrmnlBody -contentType "application/json"
+    
+ 
     Start-Sleep -Seconds 305
 
     $TrmnlBody2 = @{
