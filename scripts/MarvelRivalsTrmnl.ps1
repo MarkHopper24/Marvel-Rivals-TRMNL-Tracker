@@ -335,7 +335,7 @@ Function Invoke-TrmnlPostRequest {
     $Body1.Add('Season', [string]$Body.Season)
     $Body1.Add('PlayerName', [string]$Body.PlayerName)
     $Body1.Add('PlayerRank', [string]$Body.PlayerRank)
-    $Body1.Add('PlayerLevel', [int32]$Body.PlayerLevel)
+    $Body1.Add('PlayerLevel', [string]$Body.PlayerLevel)
     $Body1.Add('MostUsedHero', [string]$Body.MostUsedHero)
     $Body1.Add('RankedGames', [string]$Body.RankedGames)
     $Body1.Add('RankedWins', [string]$Body.RankedWins)
