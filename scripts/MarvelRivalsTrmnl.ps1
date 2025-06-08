@@ -326,22 +326,68 @@ Function Invoke-TrmnlPostRequest {
 
     $uri = "https://usetrmnl.com/api/custom_plugins/$TrmnlPluginId"
 
-    #Make sure body1 and body2 are hashtables
-
     $Body1 = @{}
     $Body2 = @{}
-    $MatchHistory0 = @{}
-    $MatchHistory1 = @{}
-    $MatchHistory2 = @{}
-    $MatchHistory3 = @{}
-    $MatchHistory4 = @{}
 
-    $MatchHistory0 = $Body.MatchHistory0 -as [hashtable]
-    $MatchHistory1 = $Body.MatchHistory1 -as [hashtable]
-    $MatchHistory2 = $Body.MatchHistory2 -as [hashtable]
-    $MatchHistory3 = $Body.MatchHistory3 -as [hashtable]
-    $MatchHistory4 = $Body.MatchHistory4 -as [hashtable]
+    $Match0Outcome = $Body.MatchHistory0.Outcome
+    $Match1Outcome = $Body.MatchHistory1.Outcome
+    $Match2Outcome = $Body.MatchHistory2.Outcome
+    $Match3Outcome = $Body.MatchHistory3.Outcome
+    $Match4Outcome = $Body.MatchHistory4.Outcome
 
+    $Mach0Score = $Body.MatchHistory0.Score
+    $Mach1Score = $Body.MatchHistory1.Score
+    $Mach2Score = $Body.MatchHistory2.Score
+    $Mach3Score = $Body.MatchHistory3.Score
+    $Mach4Score = $Body.MatchHistory4.Score
+
+    $Match0Start = $Body.MatchHistory0.MatchStart
+    $Match1Start = $Body.MatchHistory1.MatchStart
+    $Match2Start = $Body.MatchHistory2.MatchStart
+    $Match3Start = $Body.MatchHistory3.MatchStart
+    $Match4Start = $Body.MatchHistory4.MatchStart
+
+    $Match0Map = $Body.MatchHistory0.Map
+    $Match1Map = $Body.MatchHistory1.Map
+    $Match2Map = $Body.MatchHistory2.Map
+    $Match3Map = $Body.MatchHistory3.Map
+    $Match4Map = $Body.MatchHistory4.Map
+
+    $Match0MostPlayedHero = $Body.MatchHistory0.MostPlayedHero
+    $Match1MostPlayedHero = $Body.MatchHistory1.MostPlayedHero
+    $Match2MostPlayedHero = $Body.MatchHistory2.MostPlayedHero
+    $Match3MostPlayedHero = $Body.MatchHistory3.MostPlayedHero
+    $Match4MostPlayedHero = $Body.MatchHistory4.MostPlayedHero
+
+    $Match0Kills = $Body.MatchHistory0.Kills
+    $Match1Kills = $Body.MatchHistory1.Kills
+    $Match2Kills = $Body.MatchHistory2.Kills
+    $Match3Kills = $Body.MatchHistory3.Kills
+    $Match4Kills = $Body.MatchHistory4.Kills
+
+    $Match0Deaths = $Body.MatchHistory0.Deaths
+    $Match1Deaths = $Body.MatchHistory1.Deaths
+    $Match2Deaths = $Body.MatchHistory2.Deaths
+    $Match3Deaths = $Body.MatchHistory3.Deaths
+    $Match4Deaths = $Body.MatchHistory4.Deaths
+
+    $Match0Assists = $Body.MatchHistory0.Assists
+    $Match1Assists = $Body.MatchHistory1.Assists
+    $Match2Assists = $Body.MatchHistory2.Assists
+    $Match3Assists = $Body.MatchHistory3.Assists
+    $Match4Assists = $Body.MatchHistory4.Assists
+
+    $Match0Damage = $Body.MatchHistory0.Damage
+    $Match1Damage = $Body.MatchHistory1.Damage
+    $Match2Damage = $Body.MatchHistory2.Damage
+    $Match3Damage = $Body.MatchHistory3.Damage
+    $Match4Damage = $Body.MatchHistory4.Damage
+
+    $Match0Healing = $Body.MatchHistory0.Healing
+    $Match1Healing = $Body.MatchHistory1.Healing
+    $Match2Healing = $Body.MatchHistory2.Healing
+    $Match3Healing = $Body.MatchHistory3.Healing
+    $Match4Healing = $Body.MatchHistory4.Healing
 
     $Body1.Add('Season', [string]$Body.Season)
     $Body1.Add('PlayerName', [string]$Body.PlayerName)
@@ -354,11 +400,56 @@ Function Invoke-TrmnlPostRequest {
     $Body1.Add('RankedKDA', [string]$Body.RankedKDA)
     $Body1.Add('RankedKills', [string]$Body.RankedKills)
 
-    $Body2.Add('MatchHistory0', $MatchHistory0)
-    $Body2.Add('MatchHistory1', $MatchHistory1)
-    $Body2.Add('MatchHistory2', $MatchHistory2)
-    $Body2.Add('MatchHistory3', $MatchHistory3)
-    $Body2.Add('MatchHistory4', $MatchHistory4)
+    $Body2.Add('MatchHistory0Outcome', [string]$Match0Outcome)
+    $Body2.Add('MatchHistory1Outcome', [string]$Match1Outcome)
+    $Body2.Add('MatchHistory2Outcome', [string]$Match2Outcome)
+    $Body2.Add('MatchHistory3Outcome', [string]$Match3Outcome)
+    $Body2.Add('MatchHistory4Outcome', [string]$Match4Outcome)
+    $Body2.Add('MatchHistory0Score', [string]$Mach0Score)
+    $Body2.Add('MatchHistory1Score', [string]$Mach1Score)
+    $Body2.Add('MatchHistory2Score', [string]$Mach2Score)
+    $Body2.Add('MatchHistory3Score', [string]$Mach3Score)
+    $Body2.Add('MatchHistory4Score', [string]$Mach4Score)
+    $Body2.Add('MatchHistory0Start', [string]$Match0Start)
+    $Body2.Add('MatchHistory1Start', [string]$Match1Start)
+    $Body2.Add('MatchHistory2Start', [string]$Match2Start)
+    $Body2.Add('MatchHistory3Start', [string]$Match3Start)
+    $Body2.Add('MatchHistory4Start', [string]$Match4Start)
+    $Body2.Add('MatchHistory0Map', [string]$Match0Map)
+    $Body2.Add('MatchHistory1Map', [string]$Match1Map)
+    $Body2.Add('MatchHistory2Map', [string]$Match2Map)
+    $Body2.Add('MatchHistory3Map', [string]$Match3Map)
+    $Body2.Add('MatchHistory4Map', [string]$Match4Map)
+    $Body2.Add('MatchHistory0MostPlayedHero', [string]$Match0MostPlayedHero)
+    $Body2.Add('MatchHistory1MostPlayedHero', [string]$Match1MostPlayedHero)
+    $Body2.Add('MatchHistory2MostPlayedHero', [string]$Match2MostPlayedHero)
+    $Body2.Add('MatchHistory3MostPlayedHero', [string]$Match3MostPlayedHero)
+    $Body2.Add('MatchHistory4MostPlayedHero', [string]$Match4MostPlayedHero)
+    $Body2.Add('MatchHistory0Kills', [string]$Match0Kills)
+    $Body2.Add('MatchHistory1Kills', [string]$Match1Kills)
+    $Body2.Add('MatchHistory2Kills', [string]$Match2Kills)
+    $Body2.Add('MatchHistory3Kills', [string]$Match3Kills)
+    $Body2.Add('MatchHistory4Kills', [string]$Match4Kills)
+    $Body2.Add('MatchHistory0Deaths', [string]$Match0Deaths)
+    $Body2.Add('MatchHistory1Deaths', [string]$Match1Deaths)
+    $Body2.Add('MatchHistory2Deaths', [string]$Match2Deaths)
+    $Body2.Add('MatchHistory3Deaths', [string]$Match3Deaths)
+    $Body2.Add('MatchHistory4Deaths', [string]$Match4Deaths)
+    $Body2.Add('MatchHistory0Assists', [string]$Match0Assists)
+    $Body2.Add('MatchHistory1Assists', [string]$Match1Assists)
+    $Body2.Add('MatchHistory2Assists', [string]$Match2Assists)
+    $Body2.Add('MatchHistory3Assists', [string]$Match3Assists)
+    $Body2.Add('MatchHistory4Assists', [string]$Match4Assists)
+    $Body2.Add('MatchHistory0Damage', [string]$Match0Damage)
+    $Body2.Add('MatchHistory1Damage', [string]$Match1Damage)
+    $Body2.Add('MatchHistory2Damage', [string]$Match2Damage)
+    $Body2.Add('MatchHistory3Damage', [string]$Match3Damage)
+    $Body2.Add('MatchHistory4Damage', [string]$Match4Damage)
+    $Body2.Add('MatchHistory0Healing', [string]$Match0Healing)
+    $Body2.Add('MatchHistory1Healing', [string]$Match1Healing)
+    $Body2.Add('MatchHistory2Healing', [string]$Match2Healing)
+    $Body2.Add('MatchHistory3Healing', [string]$Match3Healing)
+    $Body2.Add('MatchHistory4Healing', [string]$Match4Healing)
 
     $TrmnlBody = @{
         "merge_variables" = $Body1
@@ -369,7 +460,6 @@ Function Invoke-TrmnlPostRequest {
 
     Invoke-RestMethod -Uri $uri -Headers $TrmnlHeaders -Method Post -Body $TrmnlBody -contentType "application/json"
     
- 
     Start-Sleep -Seconds 305
 
     $TrmnlBody2 = @{
