@@ -331,22 +331,23 @@ Function Invoke-TrmnlPostRequest {
     $Body1 = @{}
     $Body2 = @{}
 
-    $Body1.Add('PlayerName', $Body.PlayerName)
-    $Body1.Add('PlayerRank', $Body.PlayerRank)
-    $Body1.Add('PlayerLevel', $Body.PlayerLevel)
-    $Body1.Add('MostUsedHero', $Body.MostUsedHero)
-    $Body1.Add('RankedGames', $Body.RankedGames)
-    $Body1.Add('RankedWins', $Body.RankedWins)
-    $Body1.Add('RankedWinRate', $Body.RankedWinRate)
-    $Body1.Add('RankedKills', $Body.RankedKills)
-    $Body1.Add('RankedKDA', $Body.RankedKDA)
-    $Body1.Add('Season', $Body.Season)
 
-    $Body2.Add('MatchHistory0', $Body.MatchHistory0 -as [hashtable])
-    $Body2.Add('MatchHistory1', $Body.MatchHistory1 -as [hashtable])
-    $Body2.Add('MatchHistory2', $Body.MatchHistory2 -as [hashtable])
-    $Body2.Add('MatchHistory3', $Body.MatchHistory3 -as [hashtable])
-    $Body2.Add('MatchHistory4', $Body.MatchHistory4 -as [hashtable])
+    $Body1.Add('Season', [string]$Body.Season)
+    $Body1.Add('PlayerName', [string]$Body.PlayerName)
+    $Body1.Add('PlayerRank', [string]$Body.PlayerRank)
+    $Body1.Add('PlayerLevel', [int32]$Body.PlayerLevel)
+    $Body1.Add('MostUsedHero', [string]$Body.MostUsedHero)
+    $Body1.Add('RankedGames', [int32]$Body.RankedGames)
+    $Body1.Add('RankedWins', [int32]$Body.RankedWins)
+    $Body1.Add('RankedWinRate', [string]$Body.RankedWinRate)
+    $Body1.Add('RankedKDA', [double]$Body.RankedKDA)
+    $Body1.Add('RankedKills', [int32]$Body.RankedKills)
+
+    $Body2.Add('MatchHistory0', [hashtable]$Body.MatchHistory0)
+    $Body2.Add('MatchHistory1', [hashtable]$Body.MatchHistory1)
+    $Body2.Add('MatchHistory2', [hashtable]$Body.MatchHistory2)
+    $Body2.Add('MatchHistory3', [hashtable]$Body.MatchHistory3)
+    $Body2.Add('MatchHistory4', [hashtable]$Body.MatchHistory4)
 
     $TrmnlBody = @{
         "merge_variables" = $Body1
