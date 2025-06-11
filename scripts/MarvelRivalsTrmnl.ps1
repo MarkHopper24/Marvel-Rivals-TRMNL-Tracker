@@ -97,8 +97,16 @@ Function Get-AccountData {
 
     $uri = "https://marvelrivalsapi.com/api/v1/player/$username"
 
-    $AccountResponse = Invoke-RestMethod -Uri $uri -Headers $headers -Method Get -ContentType "application/json"
-
+    try {
+        $AccountResponse = Invoke-RestMethod -Uri $uri -Headers $headers -Method Get -ContentType "application/json" -ErrorAction Continue
+    }
+    catch {
+        Update-Player-Stats -username $username
+        #Retry fetching the account data after updating stats
+        #wait for 10 minutes before retrying
+        Start-Sleep -Seconds 600
+        $AccountResponse = Invoke-RestMethod -Uri $uri -Headers $headers -Method Get -ContentType "application/json" -ErrorAction Stop
+    }
     #Check if $AccountResponse.updates.last_update_request was more than 1 hour ago
     $LastUpdateRequest = [datetime]$AccountResponse.updates.last_update_request
     $LastUpdateRequest = $LastUpdateRequest.Ticks
@@ -113,7 +121,7 @@ Function Get-AccountData {
     if ($TimeDifference -ge $OneHourInTicks) {
         Update-Player-Stats -username $username
         #Even if its not yet updated, it will be the next time the script is run
-        $AccountResponse = Invoke-RestMethod -Uri $uri -Headers $headers -Method Get
+        #$AccountResponse = Invoke-RestMethod -Uri $uri -Headers $headers -Method Get
     }
 
     $PlayerRank = $AccountResponse.player.rank.rank
@@ -302,7 +310,12 @@ Function Get-MapName {
     $MapResponse = Invoke-RestMethod -Uri $uri -Headers $headers -Method Get
 
     $MapResponse = $MapResponse.maps | Where-Object { $_.id -eq $mapId }
-    return $MapResponse[0].name
+    if ($MapResponse.Count -eq 0) {
+        return "Unknown Map"
+    }
+    else {
+        return $MapResponse[0].name
+    }
 }
 
 Function Get-MatchDetails {
