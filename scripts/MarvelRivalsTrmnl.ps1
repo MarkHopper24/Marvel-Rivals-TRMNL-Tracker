@@ -296,7 +296,7 @@ Function Get-MatchHistory {
 
     $MatchHistoryResponse.match_history = $MatchHistoryResponse.match_history | Sort-Object -Property match_time_stamp -Descending
 
-    return $MatchHistoryResponse.match_history | Select-Object -First 5
+    return $MatchHistoryResponse.match_history | Select-Object -First 5 | Where-Object { $_.match_player.disconnected -ne $true } | Sort-Object -Property match_time_stamp -Descending | Select-Object -First 5
 }
 
 Function Get-MapName {
